@@ -13,9 +13,9 @@ jobs:
         repository: cheat-engine/cheat-engine
         ref: '7.5'
 
-    - uses: gcarreno/setup-lazarus@v3.2
+    - uses: gcarreno/setup-lazarus@v3.2.7
       with:
-        lazarus-version: "2.2.2"
+        lazarus-version: "stable"
 
 #     - run: |
 #         if (-not (Test-Path lazarus-2.2.0-fpc-3.2.2-win64.exe)) {
@@ -27,8 +27,8 @@ jobs:
 
 #     - run: ls -r '*.lpi' | % { lazbuild -B $_ --cpu=x86_64 --build-mode="Release 64-Bit O4 AVX2" }
     
-    - run: 7z a CE.7z ".\Cheat Engine\bin\*"
-
+    - run: 7z a -m0=lzma -mx=9 CE.7z ".\Cheat Engine\bin\*"
+    
     - uses: actions/upload-artifact@master
       with:
         path: CE.7z
